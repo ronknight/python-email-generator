@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Latest Products</title>
+</head>
+<body>
+  <h1>Check out these great deals!</h1>
+  {{#products}}
+    <div style="border: 1px solid #ccc; margin-bottom: 20px;">
+      <img src="{{image_url}}" alt="{{name}}" />
+      <h2>{{name}}</h2>
+      <p>Price: {{price}}</p>
+      <p>{{other_info}}</p>
+    </div>
+  {{/products}}
+</body>
+</html>

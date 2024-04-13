@@ -1,0 +1,28 @@
+[
+    {
+      "name": "Product A",
+      "price": "$19.99",
+      "image_url": "https://www.4sgm.com/assets/Image/Product/detailsbig/85146.jpg",
+      "other_info": "Some additional details",
+      "image_template": "template1.jpg", 
+      "image_position": {
+          "x": 100,
+          "y": 50
+      },
+      "text_elements": [
+          { "text": "Special Offer!", "x": 20, "y": 250, "font_size": 20, "color": "red" }
+       ]
+    },
+    { 
+      "name": "Product B",
+      "price": "$25.50",
+      "image_url": "https://www.4sgm.com/assets/Image/Product/detailsbig/85146.jpg",
+      "other_info": "More details here",
+      "image_template": "template2.jpg", 
+      "image_position": {
+          "x": 50,
+          "y": 80
+      }
+    }
+  ]
+  
