@@ -5,6 +5,11 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 import pystache
 
+from dotenv import load_dotenv  
+import os  
+
+load_dotenv()  
+
 with open('product_data.json') as f:
     data = json.load(f)
 
@@ -13,7 +18,7 @@ with open('email_template.mustache') as f:
 
 msg = MIMEMultipart()
 msg['Subject'] = 'Exciting new products!'
-msg['From'] = 'your_email@gmail.com'
+msg['From'] = os.getenv('EMAIL_ADDRESS')  
 msg['To'] = 'recipient_email@example.com'
 
 html = pystache.render(template, {'products': data})
@@ -26,5 +31,5 @@ for product in data:
 
 with smtplib.SMTP('smtp.gmail.com', 587) as server:
     server.starttls()
-    server.login('your_email@gmail.com', 'your_password')
+    server.login(os.getenv('EMAIL_ADDRESS'), os.getenv('EMAIL_PASSWORD')) 
     server.sendmail(msg['From'], msg['To'], msg.as_string())

@@ -1,28 +1,50 @@
 [
-    {
-      "name": "Product A",
-      "price": "$19.99",
-      "image_url": "https://www.4sgm.com/assets/Image/Product/detailsbig/85146.jpg",
-      "other_info": "Some additional details",
-      "image_template": "template1.jpg", 
-      "image_position": {
-          "x": 100,
-          "y": 50
-      },
-      "text_elements": [
-          { "text": "Special Offer!", "x": 20, "y": 250, "font_size": 20, "color": "red" }
-       ]
-    },
-    { 
-      "name": "Product B",
-      "price": "$25.50",
-      "image_url": "https://www.4sgm.com/assets/Image/Product/detailsbig/85146.jpg",
-      "other_info": "More details here",
-      "image_template": "template2.jpg", 
-      "image_position": {
-          "x": 50,
-          "y": 80
+{
+    "name": "Item# 85146",        
+    "price": "$19.99",             
+    "image_url": "products/85146.png", 
+    "other_info": "Limit ",                
+    "template": "template1.jpg",          
+    "image_position": { "x": 100, "y": 50 }, 
+    "image_size": { "width": 200, "height": 150 }, 
+    "name_position": { "x": 110, "y": 220 },  
+    "price_position": { "x": 110, "y": 245 },
+    "text_elements": [  
+      { 
+        "text": "Special Offer!", 
+        "x": 20, "y": 250,     
+        "font_size": 20,        
+        "color": "red",      
+        "font": "impact.ttf" 
       }
-    }
-  ]
-  
+    ],
+
+    "links": [         
+      {
+        "url": "https://www.example.com/product-a-1", 
+        "x": 50, "y": 20, "width": 100, "height": 50 
+      } 
+    ],
+
+    "draw_link_outlines": true 
+  },
+  {
+    "name": "Product B",
+    "price": "$25.50",
+    "image_url": "products/69762.png",
+    "other_info": "More details here",
+    "template": "template1.jpg",
+    "image_position": { "x": 50, "y": 80 },
+    "image_size": { "width": 300, "height": 200 },
+    "name_position": { "x": 60, "y": 220 },  
+    "price_position": { "x": 60, "y": 245 },
+    "text_elements": [
+        { "text": "New Arrival", "x": 10, "y": 10, "font_size": 25, "color": "blue", "font": "arial.ttf" }
+    ],
+    "links": [
+        { "url": "https://www.example.com/product-b-1", "x": 80, "y": 100, "width": 60, "height": 30} ,
+        { "url": "https://www.example.com/product-b-2", "x": 20, "y": 150, "width": 100, "height": 40} 
+    ],
+    "draw_link_outlines": true  
+  }
+]

@@ -8,6 +8,9 @@
   {{#products}}
     <div style="border: 1px solid #ccc; margin-bottom: 20px;">
       <img src="{{image_url}}" alt="{{name}}" />
+      {{#links}}
+        <a href="{{url}}" style="position: absolute; top: {{y}}px; left: {{x}}px; width: {{width}}px; height: {{height}}px; display: block;"></a>
+      {{/links}}
       <h2>{{name}}</h2>
       <p>Price: {{price}}</p>
       <p>{{other_info}}</p>
