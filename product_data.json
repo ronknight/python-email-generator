@@ -15,7 +15,7 @@
         "x": 20, "y": 250,     
         "font_size": 20,        
         "color": "red",      
-        "font": "impact.ttf" 
+        "font": "fonts/impact.ttf" 
       }
     ],
 
@@ -39,7 +39,7 @@
     "name_position": { "x": 60, "y": 220 },  
     "price_position": { "x": 60, "y": 245 },
     "text_elements": [
-        { "text": "New Arrival", "x": 10, "y": 10, "font_size": 25, "color": "blue", "font": "arial.ttf" }
+        { "text": "New Arrival", "x": 10, "y": 10, "font_size": 25, "color": "blue", "font": "fonts/arial.ttf" }
     ],
     "links": [
         { "url": "https://www.example.com/product-b-1", "x": 80, "y": 100, "width": 60, "height": 30} ,

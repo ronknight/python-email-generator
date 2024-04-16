@@ -23,14 +23,19 @@ def generate_product_image(product_data):
             draw.text((element['x'], element['y']), element['text'], font=font, fill=element['color'])
         
         # Draw product name
-        font = ImageFont.truetype("arial.ttf", size=16)  
+        font = ImageFont.truetype("fonts/arial.ttf", size=16)  
         draw.text((product_data['name_position']['x'], product_data['name_position']['y']), 
                   product_data['name'], font=font, fill='black')  
 
         # Draw product price
-        font = ImageFont.truetype("arial.ttf", size=14)  
+        font = ImageFont.truetype("fonts/arial.ttf", size=14)  
         draw.text((product_data['price_position']['x'], product_data['price_position']['y']), 
                   product_data['price'], font=font, fill='black')  
+        
+        if product_data.get('draw_link_outlines', False):  
+            for link in product_data.get('links', []):
+                draw.rectangle([link['x'], link['y'], link['x'] + link['width'], link['y'] + link['height']], outline='red') 
+
 
         # Unique filename with timestamp
         base_name, ext = os.path.splitext(product_data['image_url'])
