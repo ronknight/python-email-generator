@@ -1,17 +1,17 @@
 {
-  "template": "template2.png",
+  "template": "template4.png",
   "text_elements": [  
       { 
-          "text": "Special Offer!", 
-          "x": 20, "y": 250,     
-          "font_size": 20,        
+          "text": "BEST DEAL!",
+          "x": 250, "y": 10,
+          "font_size": 50,
           "color": "red",      
           "font": "fonts/impact.ttf" 
       },
       { 
-          "text": "New Arrival", 
-          "x": 10, "y": 10,     
-          "font_size": 25,        
+          "text": "HOUSEHOLD ITEMS",
+          "x": 500, "y": 15,
+          "font_size": 50,
           "color": "blue",      
           "font": "fonts/arial.ttf" 
       }
@@ -22,7 +22,7 @@
           "name": "#10695",
           "price": "$0.85",             
           "image_url": "products/10695.png", 
-          "other_info": "4% Off",                
+          "other_info": "4%",
           "image_position": { "x": 100, "y": 50 }, 
           "image_size": { "width": 200, "height": 150 }, 
           "name_position": { "x": 110, "y": 220 },  
@@ -41,7 +41,7 @@
           "name": "#97154",
           "price": "$0.59",
           "image_url": "products/97154.png",
-          "other_info": "9% Off",
+          "other_info": "9%",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
@@ -55,7 +55,7 @@
           "name": "#69762",
           "price": "$1.10",
           "image_url": "products/69762.png",
-          "other_info": "15% Off",
+          "other_info": "15%",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
@@ -69,7 +69,7 @@
           "name": "#85146",
           "price": "$1.20",
           "image_url": "products/85146.png",
-          "other_info": "14% Off",
+          "other_info": "14%",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
@@ -80,16 +80,16 @@
           "draw_link_outlines": true  
       },
       {
-          "name": "16112",
-          "price": "$1.85",
-          "image_url": "products/16112.png",
-          "other_info": "More details here",
+          "name": "48560",
+          "price": "$4.05",
+          "image_url": "products/48560.png",
+          "other_info": "16%",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.4sgm.com/product/16112/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
+              { "url": "https://www.4sgm.com/product/48560/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       },
@@ -97,7 +97,7 @@
           "name": "#53695",
           "price": "$0.95",
           "image_url": "products/53695.png",
-          "other_info": "4% Off",
+          "other_info": "4%",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
@@ -108,30 +108,30 @@
           "draw_link_outlines": true  
       },
       {
-          "name": "#57283",
-          "price": "$1.00",
-          "image_url": "products/57283.png",
-          "other_info": "17% Off",
+          "name": "#85159",
+          "price": "$0.95",
+          "image_url": "products/85159.png",
+          "other_info": "4%",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.4sgm.com/product/57283/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
+              { "url": "https://www.4sgm.com/product/85159/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       },
       {
-          "name": "#96780",
-          "price": "$1.00",
-          "image_url": "products/96780.png",
-          "other_info": "17% Off",
+          "name": "#12454",
+          "price": "$1.50",
+          "image_url": "products/12454.png",
+          "other_info": "12%",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.4sgm.com/product/96780/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
+              { "url": "https://www.4sgm.com/product/12454/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       }
