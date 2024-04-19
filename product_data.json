@@ -1,5 +1,5 @@
 {
-  "template": "template1.jpg",
+  "template": "template2.png",
   "text_elements": [  
       { 
           "text": "Special Offer!", 
@@ -16,9 +16,10 @@
           "font": "fonts/arial.ttf" 
       }
   ],
-  "products": [
+    "text_size": "10px",
+    "products": [
       {
-          "name": "Item# 10695",        
+          "name": "#10695",
           "price": "$0.85",             
           "image_url": "products/10695.png", 
           "other_info": "4% Off",                
@@ -29,7 +30,7 @@
 
           "links": [         
               {
-                  "url": "https://www.4sgm.com/product/10695/LA-Totally-Awesome-Cleaner-all-purpose-Spray-32oz.html", 
+                  "url": "https://www.4sgm.com/product/10695/index.html",
                   "x": 50, "y": 20, "width": 100, "height": 50 
               } 
           ],
@@ -37,100 +38,100 @@
           "draw_link_outlines": true 
       },
       {
-          "name": "Product B",
-          "price": "$25.50",
-          "image_url": "products/69762.png",
-          "other_info": "More details here",
+          "name": "#97154",
+          "price": "$0.59",
+          "image_url": "products/97154.png",
+          "other_info": "9% Off",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.example.com/product-b-1", "x": 80, "y": 100, "width": 60, "height": 30} 
+              { "url": "https://www.4sgm.com/product/97154/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       },
       {
-          "name": "Product C",
-          "price": "$25.50",
+          "name": "#69762",
+          "price": "$1.10",
           "image_url": "products/69762.png",
-          "other_info": "More details here",
+          "other_info": "15% Off",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.example.com/product-c-1", "x": 80, "y": 100, "width": 60, "height": 30} 
+              { "url": "https://www.4sgm.com/product/69762/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       },
       {
-          "name": "Product D",
-          "price": "$25.50",
-          "image_url": "products/69762.png",
-          "other_info": "More details here",
+          "name": "#85146",
+          "price": "$1.20",
+          "image_url": "products/85146.png",
+          "other_info": "14% Off",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.example.com/product-d-1", "x": 80, "y": 100, "width": 60, "height": 30} 
+              { "url": "https://www.4sgm.com/product/85146/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       },
       {
-          "name": "Product E",
-          "price": "$25.50",
-          "image_url": "products/69762.png",
+          "name": "16112",
+          "price": "$1.85",
+          "image_url": "products/16112.png",
           "other_info": "More details here",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.example.com/product-e-1", "x": 80, "y": 100, "width": 60, "height": 30} 
+              { "url": "https://www.4sgm.com/product/16112/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       },
       {
-          "name": "Product F",
-          "price": "$25.50",
-          "image_url": "products/69762.png",
-          "other_info": "More details here",
+          "name": "#53695",
+          "price": "$0.95",
+          "image_url": "products/53695.png",
+          "other_info": "4% Off",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.example.com/product-f-1", "x": 80, "y": 100, "width": 60, "height": 30} 
+              { "url": "https://www.4sgm.com/product/53695/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       },
       {
-          "name": "Product G",
-          "price": "$25.50",
-          "image_url": "products/69762.png",
-          "other_info": "More details here",
+          "name": "#57283",
+          "price": "$1.00",
+          "image_url": "products/57283.png",
+          "other_info": "17% Off",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.example.com/product-g-1", "x": 80, "y": 100, "width": 60, "height": 30} 
+              { "url": "https://www.4sgm.com/product/57283/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       },
       {
-          "name": "Product H",
-          "price": "$25.50",
-          "image_url": "products/69762.png",
-          "other_info": "More details here",
+          "name": "#96780",
+          "price": "$1.00",
+          "image_url": "products/96780.png",
+          "other_info": "17% Off",
           "image_position": { "x": 50, "y": 80 },
           "image_size": { "width": 300, "height": 200 },
           "name_position": { "x": 60, "y": 220 },  
           "price_position": { "x": 60, "y": 245 },
           "links": [
-              { "url": "https://www.example.com/product-h-1", "x": 80, "y": 100, "width": 60, "height": 30} 
+              { "url": "https://www.4sgm.com/product/96780/index.html", "x": 80, "y": 100, "width": 60, "height": 30}
           ],
           "draw_link_outlines": true  
       }
