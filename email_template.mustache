@@ -5,11 +5,15 @@
 </head>
 <body>
   <h1>Check out these great deals!</h1>
-  <img src="{{latest_image}}" alt="Latest Banner" style="max-width: 100%; height: auto;"/>
-  {{#products}}
-    <div style="position: absolute; top: {{image_position.y}}px; left: {{image_position.x}}px; width: {{image_size.width}}px; height: {{image_size.height}}px;">
-      <a href="{{links.[0].url}}" style="display: block; width: 100%; height: 100%;" alt="{{name}}"></a>
-    </div>
-  {{/products}}
+  <div style="border: 1px solid #ccc; margin-bottom: 20px;">
+    <img src="generated_banner/template.png" alt="Our Latest Products" />
+    {{#products}}
+      {{#links}}
+        <a href="{{url}}" style="position: absolute; top: {{y}}px; left: {{x}}px; width: {{width}}px; height: {{height}}px; display: block;" title="{{name}}">
+          {{name}}
+        </a>
+      {{/links}}
+    {{/products}}
+  </div>
 </body>
 </html>

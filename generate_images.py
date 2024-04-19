@@ -1,7 +1,8 @@
+from PIL import Image, ImageDraw, ImageFont, ImageColor
 import json
 import os
 import datetime
-from PIL import Image, ImageDraw, ImageFont, ImageColor
+
 
 def generate_product_image(product_data, template_img, draw, index, total_products, spacing):
     """
@@ -107,6 +108,7 @@ def generate_product_image(product_data, template_img, draw, index, total_produc
         draw.text((product_x, y1),
                   product_data['name'], font=name_font, fill='white')
 
+
     except Exception as e:
         print(f"Error generating image: {e}")
 
@@ -163,8 +165,8 @@ if __name__ == "__main__":
     os.makedirs(output_dir, exist_ok=True)
 
     # Save the final image with a timestamp in the filename
-    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    output_path = os.path.join(output_dir, f"output_{timestamp}.png")
+    # timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    output_path = os.path.join(output_dir, "template.png")
     template_img.save(output_path)
 
     print(f"Image saved at: {output_path}")

@@ -1,35 +1,43 @@
+import os
 import json
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.mime.image import MIMEImage
 import pystache
+from dotenv import load_dotenv
 
-from dotenv import load_dotenv  
-import os  
+load_dotenv()
 
-load_dotenv()  
+# Get the directory of the current script
+script_dir = os.path.dirname(os.path.realpath(__file__))
 
-with open('product_data.json') as f:
+# Load product data
+with open(os.path.join(script_dir, 'product_data.json')) as f:
     data = json.load(f)
 
-with open('email_template.mustache') as f:
+# Read email template from Mustache file
+with open(os.path.join(script_dir, 'email_template.mustache')) as f:
     template = f.read()
 
+# Replace relative path with absolute path in the template
+template = template.replace('generated_banner/template.png', os.path.join(script_dir, 'generated_banner/template.png'))
+
+# Render HTML content from template
+html = pystache.render(template, {'products': data})
+
+# Create MIME message
 msg = MIMEMultipart()
 msg['Subject'] = 'Exciting new products!'
-msg['From'] = os.getenv('EMAIL_ADDRESS')  
-msg['To'] = 'recipient_email@example.com'
+msg['From'] = os.getenv('EMAIL_ADDRESS')
+msg['To'] = 'rona@4sgm.com'
 
-html = pystache.render(template, {'products': data})
+# Attach HTML content to email
 msg.attach(MIMEText(html, 'html'))
 
-for product in data:
-    with open(product['image_url'], 'rb') as fp:
-        img = MIMEImage(fp.read())
-        msg.attach(img)
-
-with smtplib.SMTP('smtp.gmail.com', 587) as server:
+# Send email using pinoyitsolution.com SMTP server
+with smtplib.SMTP('pinoyitsolution.com', 587) as server:
     server.starttls()
-    server.login(os.getenv('EMAIL_ADDRESS'), os.getenv('EMAIL_PASSWORD')) 
+    server.login(os.getenv('EMAIL_ADDRESS'), os.getenv('EMAIL_PASSWORD'))
     server.sendmail(msg['From'], msg['To'], msg.as_string())
+
+print("Email sent successfully.")
