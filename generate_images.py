@@ -1,16 +1,18 @@
 from PIL import Image, ImageDraw, ImageFont, ImageColor
 import json
 import os
-import datetime
 
 class ProductImageGenerator:
-    def __init__(self, template_path, product_data_path):
-        self.product_data_path = product_data_path
-        self.template_img = None
-        self.draw = None
-        self.products = []
-        self.text_elements = []
-        self.template_name = None  # Added template_name attribute
+    def __init__(self, template_name, product_data_path):
+        self.template_name = str(template_name)  # Convert to string
+        if self.template_name.isdigit():  # Check if template_name is a digit
+            # Map template value "1" to "template1.png"
+            if self.template_name == "1":
+                self.template_name = "template1.png"
+        else:
+            # Assume template_name is already in the correct format (e.g., "template1.png")
+            pass
+        self.product_data_path = product_data_path  # Assign product_data_path as an attribute
 
     def load_product_data(self):
         with open(self.product_data_path) as f:
@@ -20,10 +22,23 @@ class ProductImageGenerator:
             self.products = data['products']
 
     def load_template_image(self):
-        # Construct full path to the template image
-        template_path = os.path.join("images", self.template_name)
+        # Load the template image
+        template_path = os.path.join("images", "template" + str(self.template_name) + ".png")
         self.template_img = Image.open(template_path).convert('RGBA')
         self.draw = ImageDraw.Draw(self.template_img)
+        
+        # Load the logo image
+        logo_path = os.path.join("images", "4sgmlogo.png")
+        logo_img = Image.open(logo_path).convert('RGBA')
+
+        # Resize the logo to 50% of its original size
+        logo_width, logo_height = logo_img.size
+        new_logo_width = int(logo_width * 0.5)
+        new_logo_height = int(logo_height * 0.5)
+        logo_img = logo_img.resize((new_logo_width, new_logo_height))
+        
+        # Paste the logo onto the template image
+        self.template_img.paste(logo_img, (10, 10), logo_img)
 
     def generate_product_image(self, product_data, index, total_products, spacing):
         try:
@@ -120,6 +135,11 @@ class ProductImageGenerator:
             print(f"Error generating image: {e}")
 
     def draw_text_elements(self):
+        # Load logo image to get its height
+        logo_path = os.path.join("images", "4sgmlogo.png")
+        logo_img = Image.open(logo_path).convert('RGBA')
+        logo_height = logo_img.height
+        
         # Calculate total width required for all text elements
         total_width = sum(ImageFont.truetype(text_element['font'], size=text_element['font_size']).getbbox(text_element['text'])[2] - ImageFont.truetype(text_element['font'], size=text_element['font_size']).getbbox(text_element['text'])[0] for text_element in self.text_elements)
         # Calculate total height of text elements
@@ -129,7 +149,8 @@ class ProductImageGenerator:
         # Start x-coordinate for the first text element
         current_x = (self.template_img.width - total_width - spacing * (len(self.text_elements) - 1)) / 2
         # Set a default value for y-coordinate
-        default_y = 0
+        default_y = logo_height - 30 # Adjust the default y-coordinate
+        
         # Iterate over each text element
         for text_element in self.text_elements:
             text = text_element['text']
@@ -158,10 +179,10 @@ class ProductImageGenerator:
         self.load_template_image()
         self.draw_text_elements()
         
-        total_products = len(self.products)
+        total_products = min(len(self.products), 8) if self.template_name == "template1.png" else len(self.products)
         spacing = self.template_img.width // (total_products + 0.98)
         
-        for index, product in enumerate(self.products):
+        for index, product in enumerate(self.products[:total_products]):
             self.generate_product_image(product, index, total_products, spacing)
 
         output_dir = 'generated_banner'
