@@ -5,13 +5,13 @@
           "text": "EXCLUSIVE DEAL!",
           "font_size": 50,
           "color": "red",
-          "font": "fonts/impact.ttf"
+          "font": "fonts/BebasNeue-Regular.ttf"
       },
       {
           "text": "HOUSEHOLD ITEMS",
           "font_size": 50,
           "color": "blue",
-          "font": "fonts/arial.ttf"
+          "font": "fonts/Montserrat-Bold.ttf"
       }
   ],
     "products": [

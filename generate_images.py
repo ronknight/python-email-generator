@@ -40,7 +40,7 @@ class ProductImageGenerator:
         # Paste the logo onto the template image
         self.template_img.paste(logo_img, (10, 10), logo_img)
 
-    def generate_product_image(self, product_data, index, total_products, spacing):
+    def generate_product_image(self, product_data, index, total_products):
         try:
             # Load the product image and resize
             product_img = Image.open(product_data['image_url']).convert('RGBA')
@@ -53,7 +53,7 @@ class ProductImageGenerator:
             product_y = self.template_img.height - product_img.height - 30
 
             # Calculate product's x-coordinate (with spacing)
-            product_x = int(spacing * (index + 1) - product_img.width // 2)
+            product_x = int((self.template_img.width / total_products) * (index + 0.5) - product_img.width / 2)
 
             # Paste product image
             self.template_img.paste(product_img, (product_x, product_y), product_img)
@@ -66,11 +66,11 @@ class ProductImageGenerator:
             price_bbox = price_font.getbbox(price_text)
             price_width = price_bbox[2] - price_bbox[0]
             price_height = price_bbox[3] - price_bbox[1]
-            price_x = product_x + (product_img.width - price_width) // 2
+            # Calculate the new price position
+            price_x = product_x + (product_img.width - price_width) // 2  # Center horizontally
             price_y = product_y - price_height  # Adjusted to be above the product image
-            # Adjust position slightly lower
-            price_y += 80
-            price_x += -30
+            price_y += 90  # Adjust vertically (increase or decrease as needed)
+            price_x += -30  # Adjust horizontally (increase or decrease as needed)
 
             # Load the sticker image
             sticker_img = Image.open("images/sticker.png")
@@ -81,6 +81,10 @@ class ProductImageGenerator:
             # Calculate sticker size proportional to price text size
             sticker_width = price_width + 85  # Add some padding
             sticker_height = int(sticker_width / sticker_aspect_ratio)
+            
+            # Make the sticker slightly smaller
+            sticker_width = int(sticker_width * 0.8)
+            sticker_height = int(sticker_height * 0.8)
 
             sticker_img = sticker_img.resize((sticker_width, sticker_height))
 
@@ -102,8 +106,8 @@ class ProductImageGenerator:
                     product_img.width - other_info_width) // 2  # Calculate the x-coordinate for the additional information
             other_info_y = product_y - other_info_height - 10  # Calculate the y-coordinate for the additional information, 10 pixels above the product image
 
-            other_info_y += 90
-            other_info_x += 45
+            other_info_y += 98
+            other_info_x += 17
 
             other_info_font = ImageFont.truetype("fonts/arial.ttf", size=15)
 
@@ -180,10 +184,9 @@ class ProductImageGenerator:
         self.draw_text_elements()
         
         total_products = min(len(self.products), 8) if self.template_name == "template1.png" else len(self.products)
-        spacing = self.template_img.width // (total_products + 0.98)
         
         for index, product in enumerate(self.products[:total_products]):
-            self.generate_product_image(product, index, total_products, spacing)
+            self.generate_product_image(product, index, total_products)
 
         output_dir = 'generated_banner'
         os.makedirs(output_dir, exist_ok=True)
