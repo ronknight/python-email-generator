@@ -134,6 +134,13 @@ class ProductImageGenerator:
             self.draw.text((product_x, y1),
                            product_data['name'], font=name_font, fill='white')
 
+            # Add the coordinates and dimensions to the product data
+            product_data['x'] = product_x
+            product_data['y'] = product_y
+            product_data['width'] = product_img.width
+            product_data['height'] = product_img.height
+
+
 
         except Exception as e:
             print(f"Error generating image: {e}")
@@ -193,6 +200,11 @@ class ProductImageGenerator:
         output_path = os.path.join(output_dir, "template.png")
         self.template_img.save(output_path)
         print(f"Image saved at: {output_path}")
+
+        # Save the product data with the coordinates and dimensions
+        with open('product_data_with_coords.json', 'w') as f:
+            json.dump(self.products, f)
+
 
 if __name__ == "__main__":
     # Load JSON data and extract template name
