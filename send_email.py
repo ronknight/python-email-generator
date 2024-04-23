@@ -43,7 +43,7 @@ html = pystache.render(template, {
 msg = MIMEMultipart()
 msg['Subject'] = f"{text_elements[0]['text']} - {text_elements[1]['text']}"
 msg['From'] = os.getenv('EMAIL_ADDRESS')
-msg['To'] = 'rona@4sgm.com, mp@4sgm.com'
+msg['To'] = 'rona@4sgm.com, mp@4sgm.com, ron.aduna@gmail.com, mparidehpour@gmail.com'
 
 # Attach HTML content to email
 msg.attach(MIMEText(html, 'html'))
