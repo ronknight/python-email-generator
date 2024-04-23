@@ -61,6 +61,7 @@ This project is licensed under the [﻿MIT License](LICENSE).
 ## Diagrams
 <!-- eraser-additional-files -->
 <a href="/README-Python Email Generator Process Flow-1.eraserdiagram" data-element-id="3KL4AjYC8mk4Uu7IRCoYP"><img src="/.eraser/jRNymTTmfHN6AeWjBx66___3Jivg2tjMecMlrHwbIVIBR8f7U03___---diagram----7395e4bebad83261eb9fe113a9d8081e-Python-Email-Generator-Process-Flow.png" alt="" data-element-id="3KL4AjYC8mk4Uu7IRCoYP" /></a>
+<a href="/README-Python Email Generator Architecture-2.eraserdiagram" data-element-id="nbLB0fF4k0v_-_Qhps7IU"><img src="/.eraser/jRNymTTmfHN6AeWjBx66___3Jivg2tjMecMlrHwbIVIBR8f7U03___---diagram----5e63610888c5e496c172c2dae38ead42-Python-Email-Generator-Architecture.png" alt="" data-element-id="nbLB0fF4k0v_-_Qhps7IU" /></a>
 <!-- end-eraser-additional-files -->
 <!-- end-eraser-additional-content -->
 <!--- Eraser file: https://app.eraser.io/workspace/jRNymTTmfHN6AeWjBx66 --->
