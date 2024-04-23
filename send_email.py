@@ -5,6 +5,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import pystache
 from dotenv import load_dotenv
+from generate_image_map import generate_image_map_html
+
 
 load_dotenv()
 
@@ -17,24 +19,31 @@ with open('product_data.json') as f:
     text_elements = data.get('text_elements')
 
 # Load product data with coordinates
-with open(os.path.join(script_dir, 'product_data_with_coords.json')) as f:
-    data = json.load(f)
+with open('product_data_with_coords.json') as f:
+    products_coords_data = json.load(f)  # Use a distinct name to avoid conflicts
 
 # Load email template from Mustache file
-with open(os.path.join(script_dir, 'email_template.mustache')) as f:
+with open('email_template.mustache') as f:
     template = f.read()
 
 # Replace relative path with absolute path in the template
-template = template.replace('generated_banner/template.png', os.path.join(script_dir, 'generated_banner/template.png'))
+template = template.replace('generated_banner/template.png', os.path.join(os.getcwd(), 'generated_banner/template.png'))  # Ensure correct path
+
+# Generate the image map HTML
+image_map_html = generate_image_map_html()
 
 # Render HTML content from template with product data
-html = pystache.render(template, {'products': data})
+html = pystache.render(template, {
+    'products': products_coords_data,  # Use product data with coordinates
+    'image_map_html': image_map_html,
+    'text_elements': text_elements
+})
 
 # Create MIME message
 msg = MIMEMultipart()
 msg['Subject'] = f"{text_elements[0]['text']} - {text_elements[1]['text']}"
 msg['From'] = os.getenv('EMAIL_ADDRESS')
-msg['To'] = 'rona@4sgm.com'
+msg['To'] = 'rona@4sgm.com, mp@4sgm.com'
 
 # Attach HTML content to email
 msg.attach(MIMEText(html, 'html'))
