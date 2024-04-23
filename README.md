@@ -6,10 +6,6 @@ This project is a Python-based email generator that creates and sends product pr
 ## Overview
 The Python Email Generator automates the process of creating and sending product promotion emails. It's particularly useful for businesses or marketers who want to efficiently reach out to their customers with visually appealing email campaigns featuring product banners.
 
-
-
-[﻿View on canvas](https://app.eraser.io/workspace/jRNymTTmfHN6AeWjBx66?elements=IR6vZV1-q4HbReyMc7_dOA) 
-
 ## Project Structure
 - `.env` : Configuration file containing environment variables, such as email credentials. This file is not tracked by Git.
 - `.gitignore` : Specifies files and directories to be ignored by Git, such as sensitive data or virtual environment folders.
