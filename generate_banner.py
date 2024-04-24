@@ -9,6 +9,9 @@ class ProductImageGenerator:
             # Map template value "1" to "template1.png"
             if self.template_name == "1":
                 self.template_name = "template1.png"
+            elif self.template_name == "2":
+                self.template_name = "template2.png"
+            # Add more elif blocks for other template numbers as needed
         else:
             # Assume template_name is already in the correct format (e.g., "template1.png")
             pass
