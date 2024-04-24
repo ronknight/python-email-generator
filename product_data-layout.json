@@ -16,49 +16,49 @@
   ],
     "products": [
       {
-          "name": "123-1",
+          "name": "01-1",
           "price": "$1.01",
           "original_price": "$2.01",
           "discount": "1%"
       },
       {
-          "name": "123-2",
+          "name": "01-2",
           "price": "$1.02",
           "original_price": "$2.02",
           "discount": "2%"
       },
       {
-          "name": "123-3",
+          "name": "01-3",
           "price": "$1.03",
           "original_price": "$2.03",
           "discount": "3%"
       },
       {
-          "name": "123-4",
+          "name": "01-4",
           "price": "$1.04",
           "original_price": "$2.04",
           "discount": "4%"
       },
       {
-          "name": "123-5",
+          "name": "01-5",
           "price": "$1.05",
           "original_price": "$2.05",
           "discount": "5%"
       },
       {
-          "name": "123-6",
+          "name": "01-6",
           "price": "$1.06",
           "original_price": "$2.06",
           "discount": "6%"
       },
       {
-          "name": "123-7",
+          "name": "01-7",
           "price": "$1.07",
           "original_price": "$2.07",
           "discount": "7%"
       },
       {
-          "name": "123-8",
+          "name": "01-8",
           "price": "$1.08",
           "original_price": "$2.08",
           "discount": "8%"

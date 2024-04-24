@@ -199,6 +199,30 @@ class ProductImageGenerator:
         # Set a default value for y-coordinate
         default_y = logo_height - 30  # Adjust the default y-coordinate
 
+        # Iterate over each text element
+        for text_element in self.text_elements:
+            text = text_element['text']
+            font_size = text_element['font_size']
+            font_path = os.path.join("fonts", text_element['font'])
+            font = ImageFont.truetype(font_path, size=text_element['font_size'])
+            color = ImageColor.getrgb(text_element['color'])
+            # Use default value if 'y' coordinate is missing
+            y = text_element.get('y', default_y)
+            # Calculate the width and height of the text element
+            bbox = font.getbbox(text)
+            width = bbox[2] - bbox[0]
+            height = bbox[3] - bbox[1]
+            # Check if the width exceeds the template width
+            if total_width > self.template_img.width:
+                # If width exceeds, scale down the width of the text elements
+                scale_factor = self.template_img.width / total_width
+                width *= scale_factor
+                height *= scale_factor
+            # Draw text
+            self.draw.text((current_x, y), text, font=font, fill=color)
+            # Update current_x for the next text element
+            current_x += width + spacing
+
     def generate_images(self):
         self.load_product_data()
         self.load_template_image()
@@ -234,5 +258,7 @@ if __name__ == "__main__":
         template_name = data['template']
 
     # Create instance of ProductImageGenerator with the template name and product data path
+    #generator = ProductImageGenerator(template_name, "product_data-layout.json")
     generator = ProductImageGenerator(template_name, "product_data.json")
+
     generator.generate_images()
