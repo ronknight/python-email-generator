@@ -227,8 +227,14 @@ class ProductImageGenerator:
         self.load_product_data()
         self.load_template_image()
         self.draw_text_elements()
-        
-        total_products = min(len(self.products), 8) if self.template_name == "template1.png" else len(self.products)
+
+        print(self.template_name)
+        if self.template_name == "1":
+            total_products = min(len(self.products), 8)
+        elif self.template_name == "2":
+            total_products = min(len(self.products), 6)
+        else:
+            total_products = len(self.products)
         
         for index, product in enumerate(self.products[:total_products]):
             self.generate_product_image(product, index, total_products)
