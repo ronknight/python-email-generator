@@ -1,0 +1,30 @@
+cloud-architecture-diagram
+
+
+title Python Email Generator Architecture
+
+// Define groups and nodes
+Email Generation {
+  Email Template [icon: file-text]
+  Image Generator [icon: camera]
+  Email Sender [icon: mail]
+}
+Data Storage {
+  Product Data [icon: database]
+  Fonts [icon: type]
+  Image Templates [icon: images]
+  Product Images [icon: image]
+}
+Environment Config {
+  Env Variables [icon: settings]
+}
+
+// Define connections where none are between a parent group and its own child node
+Product Data > Image Generator
+Fonts > Image Generator
+Image Templates > Image Generator
+Product Images > Image Generator
+Image Generator > Email Template
+Env Variables > Email Sender
+Email Template > Email Sender
+

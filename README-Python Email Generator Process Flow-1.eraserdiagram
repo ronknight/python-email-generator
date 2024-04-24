@@ -1,0 +1,19 @@
+flowchart-diagram
+
+
+title Python Email Generator Process Flow
+
+// Define nodes and relationships
+Start [shape: oval, icon: flag] > Read env variables [icon: aws-ssm]
+Read env variables > Load product data from JSON [icon: file-text]
+Load product data from JSON > Generate banners [icon: image]
+Generate banners > Create email content [icon: mail]
+Create email content > Send email [icon: send]
+Send email > End [shape: oval, icon: check]
+
+// Define Groups
+For each product in JSON [icon: repeat] {
+  Generate banners
+  Create email content
+  Send email
+}
