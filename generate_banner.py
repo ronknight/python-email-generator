@@ -43,7 +43,8 @@ class ProductImageGenerator:
     def generate_product_image(self, product_data, index, total_products):
         try:
             # Load the product image and resize
-            product_img = Image.open(product_data['image_url']).convert('RGBA')
+            product_img_path = os.path.join("products", f"{product_data['name']}.png")
+            product_img = Image.open(product_img_path).convert('RGBA')
             max_product_width = self.template_img.width // total_products
             max_product_height = int(self.template_img.height * 0.7)
             ratio = min(max_product_width / product_img.width, max_product_height / product_img.height)
@@ -58,7 +59,7 @@ class ProductImageGenerator:
             # Paste product image
             self.template_img.paste(product_img, (product_x, product_y), product_img)
 
-            # Load font
+            # Load font for price
             price_font = ImageFont.truetype("fonts/impact.ttf", size=18)
 
             # Draw the product price
@@ -81,7 +82,7 @@ class ProductImageGenerator:
             # Calculate sticker size proportional to price text size
             sticker_width = price_width + 85  # Add some padding
             sticker_height = int(sticker_width / sticker_aspect_ratio)
-            
+
             # Make the sticker slightly smaller
             sticker_width = int(sticker_width * 0.8)
             sticker_height = int(sticker_height * 0.8)
@@ -91,34 +92,61 @@ class ProductImageGenerator:
             # Paste sticker image
             self.template_img.paste(sticker_img, (price_x - 9, price_y - 8), sticker_img)
 
-            # Draw text on top of sticker
+            # Draw text on top of sticker (current price)
             self.draw.text((price_x, price_y), price_text, font=price_font, fill='red')
 
+            # Draw "Was:" label
+            was_label_font = ImageFont.truetype("fonts/arial.ttf", size=8)
+            was_label_text = "Was: "
+            was_label_bbox = was_label_font.getbbox(was_label_text)
+            was_label_width = was_label_bbox[2] - was_label_bbox[0]
+            was_label_height = was_label_bbox[3] - was_label_bbox[1]
+            was_label_x = price_x  # Same x-coordinate as current price
+            was_label_y = price_y + 19 # Below the current price
+            self.draw.text((was_label_x, was_label_y), was_label_text, font=was_label_font, fill='black')
+
+            # Draw original price without the "Was:" label
+            original_price_font = ImageFont.truetype("fonts/arial.ttf", size=8)
+            original_price_text = f"{product_data['original_price']}"
+            original_price_bbox = original_price_font.getbbox(original_price_text)
+            original_price_width = original_price_bbox[2] - original_price_bbox[0]
+            original_price_height = original_price_bbox[3] - original_price_bbox[1]
+            original_price_x = price_x + was_label_width  # Adjust x-coordinate to start after the "Was:" label
+            original_price_y = price_y + 19  # Below the current price
+            # Draw the original price with strike-through
+            self.draw.text((original_price_x, original_price_y), original_price_text, font=original_price_font,
+                           fill='grey')
+            self.draw.line((original_price_x, original_price_y + original_price_height // 2,
+                            original_price_x + original_price_width, original_price_y + original_price_height // 2),
+                           fill='grey', width=1)  # Draw strike-through line
+
             # Calculate the position for the additional information
-            other_info_text = product_data.get('other_info', '')  # Get the additional information from product_data
-            other_info_bbox = price_font.getbbox(
-                other_info_text)  # Calculate the bounding box for the additional information
-            other_info_width = other_info_bbox[2] - other_info_bbox[
+            discount_text = product_data.get('discount', '')  # Get the additional information from product_data
+            discount_bbox = price_font.getbbox(
+                discount_text)  # Calculate the bounding box for the additional information
+            discount_width = discount_bbox[2] - discount_bbox[
                 0]  # Calculate the width of the additional information text
-            other_info_height = other_info_bbox[3] - other_info_bbox[
+            discount_height = discount_bbox[3] - discount_bbox[
                 1]  # Calculate the height of the additional information text
-            other_info_x = product_x + (
-                    product_img.width - other_info_width) // 2  # Calculate the x-coordinate for the additional information
-            other_info_y = product_y - other_info_height - 10  # Calculate the y-coordinate for the additional information, 10 pixels above the product image
+            discount_x = product_x + (
+                    product_img.width - discount_width) // 2  # Calculate the x-coordinate for the additional information
+            discount_y = product_y - discount_height - 10  # Calculate the y-coordinate for the additional information, 10 pixels above the product image
 
-            other_info_y += 98
-            other_info_x += 17
+            discount_y += 98
+            discount_x += 17
 
-            other_info_font = ImageFont.truetype("fonts/arial.ttf", size=15)
+            discount_font = ImageFont.truetype("fonts/arial.ttf", size=15)
 
             # Draw the additional information text beside the price
-            self.draw.text((other_info_x, other_info_y), other_info_text, font=other_info_font, fill='white')
+            self.draw.text((discount_x, discount_y), discount_text, font=discount_font, fill='white')
 
-            # Load font
+            # Load font for product name
             name_font = ImageFont.truetype("fonts/arial.ttf", size=16)
 
+            # Add hashtag to the product name
+            product_name_with_hashtag = "#" + product_data['name']
             # Draw product name with blue background below the product image
-            text_bbox = name_font.getbbox(product_data['name'])
+            text_bbox = name_font.getbbox(product_name_with_hashtag)
             text_width = text_bbox[2] - text_bbox[0]
             text_height = text_bbox[3] - text_bbox[1]
             background_width = text_width + 4
@@ -132,15 +160,13 @@ class ProductImageGenerator:
 
             # Draw text with slight offset within the background
             self.draw.text((product_x, y1),
-                           product_data['name'], font=name_font, fill='white')
+                           product_name_with_hashtag, font=name_font, fill='white')
 
             # Add the coordinates and dimensions to the product data
             product_data['x'] = product_x
             product_data['y'] = product_y
             product_data['width'] = product_img.width
             product_data['height'] = product_img.height
-
-
 
         except Exception as e:
             print(f"Error generating image: {e}")
@@ -150,23 +176,32 @@ class ProductImageGenerator:
         logo_path = os.path.join("images", "4sgmlogo.png")
         logo_img = Image.open(logo_path).convert('RGBA')
         logo_height = logo_img.height
-        
+
         # Calculate total width required for all text elements
-        total_width = sum(ImageFont.truetype(text_element['font'], size=text_element['font_size']).getbbox(text_element['text'])[2] - ImageFont.truetype(text_element['font'], size=text_element['font_size']).getbbox(text_element['text'])[0] for text_element in self.text_elements)
+        total_width = sum(
+            ImageFont.truetype(os.path.join("fonts", text_element['font']), size=text_element['font_size']).getbbox(
+                text_element['text'])[2] -
+            ImageFont.truetype(os.path.join("fonts", text_element['font']), size=text_element['font_size']).getbbox(
+                text_element['text'])[0] for text_element in self.text_elements)
         # Calculate total height of text elements
-        max_height = max(ImageFont.truetype(text_element['font'], size=text_element['font_size']).getbbox(text_element['text'])[3] - ImageFont.truetype(text_element['font'], size=text_element['font_size']).getbbox(text_element['text'])[1] for text_element in self.text_elements)
+        max_height = max(
+            ImageFont.truetype(os.path.join("fonts", text_element['font']), size=text_element['font_size']).getbbox(
+                text_element['text'])[3] -
+            ImageFont.truetype(os.path.join("fonts", text_element['font']), size=text_element['font_size']).getbbox(
+                text_element['text'])[1] for text_element in self.text_elements)
         # Calculate spacing between text elements
         spacing = (self.template_img.width - total_width) / (len(self.text_elements) + 1)
         # Start x-coordinate for the first text element
         current_x = (self.template_img.width - total_width - spacing * (len(self.text_elements) - 1)) / 2
         # Set a default value for y-coordinate
-        default_y = logo_height - 30 # Adjust the default y-coordinate
-        
+        default_y = logo_height - 30  # Adjust the default y-coordinate
+
         # Iterate over each text element
         for text_element in self.text_elements:
             text = text_element['text']
             font_size = text_element['font_size']
-            font = ImageFont.truetype(text_element['font'], size=font_size)
+            font_path = os.path.join("fonts", text_element['font'])
+            font = ImageFont.truetype(font_path, size=text_element['font_size'])
             color = ImageColor.getrgb(text_element['color'])
             # Use default value if 'y' coordinate is missing
             y = text_element.get('y', default_y)
