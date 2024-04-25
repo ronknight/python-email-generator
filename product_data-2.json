@@ -1,5 +1,5 @@
 {
-  "template":1,
+  "template":2,
   "text_elements": [
       {
           "text": "EXCLUSIVE DEAL!",
@@ -40,28 +40,16 @@
           "discount": "14%"
       },
       {
-          "name": "48560",
-          "price": "$4.05",
-          "original_price": "$4.85",
-          "discount": "16%"
-      },
-      {
-          "name": "53695",
-          "price": "$0.95",
-          "original_price": "$0.99",
-          "discount": "4%"
-      },
-      {
           "name": "94195",
-          "price": "$0.95",
-          "original_price": "$0.99",
+          "price": "$0.85",
+          "original_price": "$0.89",
           "discount": "4%"
       },
       {
           "name": "94196",
-          "price": "$1.50",
-          "original_price": "$1.70",
-          "discount": "12%"
+          "price": "$0.85",
+          "original_price": "$0.89",
+          "discount": "4%"
       }
   ]
 }

@@ -53,11 +53,32 @@ class ProductImageGenerator:
             ratio = min(max_product_width / product_img.width, max_product_height / product_img.height)
             product_img = product_img.resize((int(product_img.width * ratio), int(product_img.height * ratio)))
 
+            # Check if the current product is one of the last two products
+            if index >= total_products - 2:
+                # Calculate the maximum width and height for the last two products
+                max_last_product_width = max_product_width * 1.2
+                max_last_product_height = max_product_height
+                # Calculate the ratio for resizing while maintaining aspect ratio
+                width_ratio = max_last_product_width / product_img.width
+                height_ratio = max_last_product_height / product_img.height
+                # Choose the smaller ratio to ensure that both dimensions fit within the template area
+                ratio = min(width_ratio, height_ratio)
+            else:
+                # Calculate the ratio for resizing while maintaining aspect ratio
+                ratio = min(max_product_width / product_img.width, max_product_height / product_img.height)
+
+            # Resize the product image
+            product_img = product_img.resize((int(product_img.width * ratio), int(product_img.height * ratio)))
+
             # Calculate product's y-coordinate (align to bottom)
             product_y = self.template_img.height - product_img.height - 30
 
             # Calculate product's x-coordinate (with spacing)
             product_x = int((self.template_img.width / total_products) * (index + 0.5) - product_img.width / 2)
+
+            # Apply stacking modification only if using template 2
+            if self.template_name == 2 and index == total_products - 2:
+                product_y -= product_img.height // 2  # Adjust y-coordinate to stack on top of the last item
 
             # Paste product image
             self.template_img.paste(product_img, (product_x, product_y), product_img)
@@ -98,23 +119,23 @@ class ProductImageGenerator:
             # Draw text on top of sticker (current price)
             self.draw.text((price_x, price_y), price_text, font=price_font, fill='red')
 
-            # Draw "Was:" label
-            was_label_font = ImageFont.truetype("fonts/arial.ttf", size=8)
-            was_label_text = "Was: "
-            was_label_bbox = was_label_font.getbbox(was_label_text)
-            was_label_width = was_label_bbox[2] - was_label_bbox[0]
-            was_label_height = was_label_bbox[3] - was_label_bbox[1]
-            was_label_x = price_x  # Same x-coordinate as current price
-            was_label_y = price_y + 19 # Below the current price
-            self.draw.text((was_label_x, was_label_y), was_label_text, font=was_label_font, fill='black')
+            # Draw "Reg:" label
+            reg_label_font = ImageFont.truetype("fonts/arial.ttf", size=8)
+            reg_label_text = "Reg.: "
+            reg_label_bbox = reg_label_font.getbbox(reg_label_text)
+            reg_label_width = reg_label_bbox[2] - reg_label_bbox[0]
+            reg_label_height = reg_label_bbox[3] - reg_label_bbox[1]
+            reg_label_x = price_x  # Same x-coordinate as current price
+            reg_label_y = price_y + 19 # Below the current price
+            self.draw.text((reg_label_x, reg_label_y), reg_label_text, font=reg_label_font, fill='black')
 
-            # Draw original price without the "Was:" label
+            # Draw original price without the "Reg.:" label
             original_price_font = ImageFont.truetype("fonts/arial.ttf", size=8)
             original_price_text = f"{product_data['original_price']}"
             original_price_bbox = original_price_font.getbbox(original_price_text)
             original_price_width = original_price_bbox[2] - original_price_bbox[0]
             original_price_height = original_price_bbox[3] - original_price_bbox[1]
-            original_price_x = price_x + was_label_width  # Adjust x-coordinate to start after the "Was:" label
+            original_price_x = price_x + reg_label_width  # Adjust x-coordinate to start after the "Reg.:" label
             original_price_y = price_y + 19  # Below the current price
             # Draw the original price with strike-through
             self.draw.text((original_price_x, original_price_y), original_price_text, font=original_price_font,
@@ -186,16 +207,20 @@ class ProductImageGenerator:
                 text_element['text'])[2] -
             ImageFont.truetype(os.path.join("fonts", text_element['font']), size=text_element['font_size']).getbbox(
                 text_element['text'])[0] for text_element in self.text_elements)
+
         # Calculate total height of text elements
         max_height = max(
             ImageFont.truetype(os.path.join("fonts", text_element['font']), size=text_element['font_size']).getbbox(
                 text_element['text'])[3] -
             ImageFont.truetype(os.path.join("fonts", text_element['font']), size=text_element['font_size']).getbbox(
                 text_element['text'])[1] for text_element in self.text_elements)
+
         # Calculate spacing between text elements
         spacing = (self.template_img.width - total_width) / (len(self.text_elements) + 1)
+
         # Start x-coordinate for the first text element
         current_x = (self.template_img.width - total_width - spacing * (len(self.text_elements) - 1)) / 2
+
         # Set a default value for y-coordinate
         default_y = logo_height - 30  # Adjust the default y-coordinate
 
@@ -228,15 +253,13 @@ class ProductImageGenerator:
         self.load_template_image()
         self.draw_text_elements()
 
-        print(self.template_name)
-
         # Count total products
-        if self.template_name == 1:
+        if int(self.template_name) == 1:
             total_products = 8
-        elif self.template_name == 2:
+        elif int(self.template_name) == 2:
             total_products = 6
-
         # Add more conditions for other templates
+
         for index, product in enumerate(self.products[:total_products]):
             self.generate_product_image(product, index, total_products)
 
@@ -258,7 +281,9 @@ if __name__ == "__main__":
         template_name = data['template']
 
     # Create instance of ProductImageGenerator with the template name and product data path
-    #generator = ProductImageGenerator(template_name, "product_data-layout.json")
+    # generator = ProductImageGenerator(template_name, "product_data-layout.json")
     generator = ProductImageGenerator(template_name, "product_data.json")
+    # generator = ProductImageGenerator(template_name, "product_data-2.json")
+
 
     generator.generate_images()
