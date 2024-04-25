@@ -282,8 +282,8 @@ if __name__ == "__main__":
 
     # Create instance of ProductImageGenerator with the template name and product data path
     # generator = ProductImageGenerator(template_name, "product_data-layout.json")
-    generator = ProductImageGenerator(template_name, "product_data.json")
-    # generator = ProductImageGenerator(template_name, "product_data-2.json")
+    # generator = ProductImageGenerator(template_name, "product_data.json")
+    generator = ProductImageGenerator(template_name, "product_data-2.json")
 
 
     generator.generate_images()

@@ -7,7 +7,7 @@ def generate_image_map_html():
     map_tag = '<map name="productmap">\n'
 
     for product in data:
-        area_tag = f'  <area shape="rect" coords="{product["x"]},{product["y"]},{product["x"] + product["width"]},{product["y"] + product["height"]}" href="{"https://4sgm.com/product/"+ product["name"] + "/index.html"}" alt="{product["name"]}">\n'
+        area_tag = f'  <area shape="rect" coords="{product["x"]},{product["y"]},{product["x"] + product["width"]},{product["y"] + product["height"]}" href="{"https://4sgm.com/product/"+ product["name"] + "/index.html?utm_source=ITDept&utm_medium=Banners&utm_campaign=2024-04-BannerAutomation"}" alt="{product["name"]}">\n'
         map_tag += area_tag
         print(area_tag) # Print the area tag after it's generated
 
