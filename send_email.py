@@ -49,7 +49,7 @@ msg['To'] = 'rona@4sgm.com, mp@4sgm.com, ron.aduna@gmail.com, mparidehpour@gmail
 msg.attach(MIMEText(html, 'html'))
 
 # Send email using SMTP server
-with smtplib.SMTP('pinoyitsolution.com', 587) as server:  # Replace with your SMTP server details
+with smtplib.SMTP(os.getenv('EMAIL_SERVER'), 587) as server:  # Replace with your SMTP server details
     server.starttls()
     server.login(os.getenv('EMAIL_ADDRESS'), os.getenv('EMAIL_PASSWORD'))
     server.sendmail(msg['From'], msg['To'], msg.as_string())
