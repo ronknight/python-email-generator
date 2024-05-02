@@ -27,6 +27,12 @@ This file serves as the HTML template for the emails. It allows dynamic insertio
 ### `.env` 
 The `.env` file contains environment variables, including the email address and password used to send the emails. It's essential for securely storing sensitive information and should not be tracked by version control systems like Git.
 
+```bash
+EMAIL_ADDRESS=
+EMAIL_PASSWORD=
+EMAIL_SERVER=
+```
+
 ### `generate_images.py` 
 This script generates the banner used in the emails. It processes the product data from `product_data.json` and utilizes images from the `products/` directory to create visually appealing banners.
 
