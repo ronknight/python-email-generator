@@ -1,12 +1,35 @@
 <p><a target="_blank" href="https://app.eraser.io/workspace/jRNymTTmfHN6AeWjBx66" id="edit-in-eraser-github-link"><img alt="Edit in Eraser" src="https://firebasestorage.googleapis.com/v0/b/second-petal-295822.appspot.com/o/images%2Fgithub%2FOpen%20in%20Eraser.svg?alt=media&amp;token=968381c8-a7e7-472a-8ed6-4a6626da5501"></a></p>
 
-# Python Email Generator
-This project is a Python-based email generator that creates and sends product promotion emails.
+<h1 align="center"><a href="https://github.com/ronknight/python-email-generator">Python Email Generator</a></h1>
+<h4 align="center">This project is a Python-based email generator that creates and sends product promotion emails.</h4>
+
+<p align="center">
+<a href="https://twitter.com/PinoyITSolution"><img src="https://img.shields.io/twitter/follow/PinoyITSolution?style=social"></a>
+<a href="https://github.com/ronknight?tab=followers"><img src="https://img.shields.io/github/followers/ronknight?style=social"></a>
+<a href="https://youtube.com/@PinoyITSolution"><img src="https://img.shields.io/youtube/channel/subscribers/UCeoETAlg3skyMcQPqr97omg"></a>
+<a href="https://github.com/ronknight/python-email-generator/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat"></a>
+<a href="https://github.com/ronknight/python-email-generator/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
+<a href="#"><img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg"></a>
+<a href="https://github.com/ronknight"><img src="https://img.shields.io/badge/Made%20with%20%F0%9F%A4%8D%20by%20-%20Ronknight%20-%20red"></a>
+</p>
+
+<p align="center">
+  <a href="#overview">Overview</a> •
+  <a href="#structure">Structure</a> •
+  <a href="#scripts">Scripts</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#setup">Setup</a> •
+  <a href="#dependencies">Dependencies</a> •
+  <a href="#diagrams">Diagrams</a> •
+</p>
+
+---
+
 
 ## Overview
 The Python Email Generator automates the process of creating and sending product promotion emails. It's particularly useful for businesses or marketers who want to efficiently reach out to their customers with visually appealing email campaigns featuring product banners.
 
-## Project Structure
+## Structure
 - `.env` : Configuration file containing environment variables, such as email credentials. This file is not tracked by Git.
 - `.gitignore` : Specifies files and directories to be ignored by Git, such as sensitive data or virtual environment folders.
 - `email_template.mustache` : HTML template for the emails, using the Mustache templating language to insert product data.
@@ -20,7 +43,8 @@ The Python Email Generator automates the process of creating and sending product
 - `products/` : Directory containing the actual product images referenced in `product_data.json` .
 - `README.md` : Markdown file providing an overview of the project, usage instructions, and other details.
 - `send_email.py` : Script to generate and send the email campaign, incorporating the generated banner and other necessary information.
-## Key Files
+
+## Scripts
 ### `email_template.mustache` 
 This file serves as the HTML template for the emails. It allows dynamic insertion of product data into the email content using the Mustache templating language.
 
